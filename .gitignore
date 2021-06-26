@@ -63,3 +63,7 @@
 
 # vercel
 /front/app/.vercel
+
+
+
+/tmp/db/*
