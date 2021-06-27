@@ -5,22 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Post.create!(
+# User.create!(
 #   [
 #     {
-#       content: 'Next.js + Ruby on Rails + Docker の環境構築'
-#     },
-#     {
-#       content: 'React Hooks でカスタムフックを作る'
-#     },
-#     {
-#       content: 'GraphQL と Apollo Client 入門'
-#     },
-#     {
-#       content: '【TypeScript4.3】Template Literal Types'
-#     },
-#     {
-#       content: 'Tailwind CSS でダークモード実装'
-#     },
+#       name: 'tachi'
+#     }
 #   ]
 # )

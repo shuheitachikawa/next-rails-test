@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
-import { GetStaticProps } from "next";
+import { NextPage, GetStaticProps } from "next";
 import axios from "axios";
-import Link from "next/link"
+import Link from "next/link";
 
 type Post = {
   id: number;
@@ -14,17 +14,19 @@ type Props = {
 
 const baseUrl = "http://api:3000";
 
-const Home: FC<Props> = (props) => {
+const Posts: NextPage<Props> = (props) => {
+  const [posts, setPosts] = useState(props.posts);
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(content);
     const payload = {
       content: content,
     };
     try {
-      await axios.post("http://localhost:3000/posts", payload);
+      const { data } = await axios.post("http://localhost:3000/posts", payload);
+      setPosts([...posts, data]);
+      setContent("");
     } catch (e) {
       console.log(e);
     }
@@ -35,10 +37,12 @@ const Home: FC<Props> = (props) => {
       <h2>POSTの一覧</h2>
       <table>
         <tbody>
-          {props.posts.map((post) => (
+          {posts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}.</td>
-              <td><Link href={`/posts/${post.id}`}>{post.content}</Link></td>
+              <td>
+                <Link href={`/posts/${post.id}`}>{post.content}</Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -65,4 +69,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default Home;
+export default Posts;
