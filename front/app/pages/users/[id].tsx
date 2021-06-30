@@ -5,25 +5,25 @@ import Link from "next/link";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-type Post = {
+type User = {
   id: number;
-  content: string;
+  name: string;
+  password: string;
 };
 
 type Props = {
-  post: Post;
+  user: User;
 };
 
-const Post: NextPage<Props> = (props) => {
-  console.log(props)
+const User: NextPage<Props> = (props) => {
   const router = useRouter();
-  const { id } = props.post;
-  const [content, setContent] = useState(props.post.content);
+  const { id } = props.user;
+  const [name, setName] = useState(props.user.name);
 
   const handleUpdate = async () => {
     const payload = {
-      ...props.post,
-      content: content,
+      ...props.user,
+      name: name,
     };
     try {
       await axios.put(`http://localhost:3000/posts/${id}`, payload);
@@ -38,13 +38,14 @@ const Post: NextPage<Props> = (props) => {
   };
   return (
     <div>
-      <h2>POST詳細</h2>
+      <h2>User詳細</h2>
       <div className="">
-
+      <p>ID: {props.user.id}</p>
+      <p>pass: {props.user.password}</p>
       <input
         type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <button onClick={handleUpdate}>更新</button>
       <button onClick={handleDelete}>削除</button>
@@ -56,19 +57,19 @@ const Post: NextPage<Props> = (props) => {
 
 const baseUrl = "http://api:3000";
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const { data } = await axios.get(`${baseUrl}/posts`);
-  const paths = data.map((post) => `/posts/${post.id}`);
+  const { data } = await axios.get(`${baseUrl}/users`);
+  const paths = data.map((user) => `/users/${user.id}`);
   return { paths: paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params.id;
-  const { data } = await axios.get(`${baseUrl}/posts/${id}`);
+  const { data } = await axios.get(`${baseUrl}/users/${id}`);
   return {
     props: {
-      post: data,
+      user: data,
     },
   };
 };
 
-export default Post;
+export default User;

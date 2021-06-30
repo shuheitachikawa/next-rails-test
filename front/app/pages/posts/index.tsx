@@ -22,9 +22,13 @@ const Posts: NextPage<Props> = (props) => {
     e.preventDefault();
     const payload = {
       content: content,
+      user_id: 7
     };
     try {
-      const { data } = await axios.post("http://localhost:3000/posts", payload);
+      const { data } = await axios.post(
+        `${process.env.base_url}/posts`,
+        payload
+      );
       setPosts([...posts, data]);
       setContent("");
     } catch (e) {

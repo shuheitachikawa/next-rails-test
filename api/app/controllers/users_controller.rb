@@ -38,6 +38,17 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  #追加
+  def signin
+    @user = User.find_by(name: params[:name], password: params[:password])
+    if @user
+      rendar json: @user
+    else
+      error = { error: 'not correct' }
+      rendar json: error
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -46,6 +57,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:uuid, :name)
+      params.require(:user).permit(:uuid, :name, :password)
     end
 end
