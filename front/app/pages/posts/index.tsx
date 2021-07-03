@@ -42,7 +42,7 @@ const Posts: NextPage<Props> = (props) => {
       <Head>
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-      <h2>POSTの一覧</h2>
+      <h2>POSTの一覧1</h2>
       <table>
         <tbody>
           {posts.map((post) => (
