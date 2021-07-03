@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { NextPage, GetStaticProps } from "next";
 import axios from "axios";
 import Link from "next/link";
+import Head from 'next/head'
 
 type Post = {
   id: number;
@@ -38,6 +39,9 @@ const Posts: NextPage<Props> = (props) => {
 
   return (
     <div>
+      <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </Head>
       <h2>POSTの一覧</h2>
       <table>
         <tbody>
