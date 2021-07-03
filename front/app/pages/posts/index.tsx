@@ -40,7 +40,7 @@ const Posts: NextPage<Props> = (props) => {
   return (
     <div>
       <Head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <h2>POSTの一覧</h2>
       <table>
