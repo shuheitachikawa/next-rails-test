@@ -13,7 +13,7 @@ type Props = {
   posts: Post[];
 };
 
-const baseUrl = "http://18.183.169.37";
+const baseUrl = "http://18.183.169.37:80";
 
 const Posts: NextPage<Props> = (props) => {
   const [posts, setPosts] = useState(props.posts);
