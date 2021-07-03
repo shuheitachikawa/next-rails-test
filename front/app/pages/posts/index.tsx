@@ -12,7 +12,7 @@ type Props = {
   posts: Post[];
 };
 
-const baseUrl = "http://api:3000";
+const baseUrl = "http://52.192.20.236";
 
 const Posts: NextPage<Props> = (props) => {
   const [posts, setPosts] = useState(props.posts);
@@ -22,11 +22,11 @@ const Posts: NextPage<Props> = (props) => {
     e.preventDefault();
     const payload = {
       content: content,
-      user_id: 7
+      user_id: 1
     };
     try {
       const { data } = await axios.post(
-        `${process.env.base_url}/posts`,
+        `${baseUrl}/posts`,
         payload
       );
       setPosts([...posts, data]);
@@ -64,7 +64,9 @@ const Posts: NextPage<Props> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { data } = await axios.get(`${baseUrl}/posts`);
+  // const { data } = await axios.get(`${baseUrl}/posts`);
+  const data = []
+
 
   return {
     props: {

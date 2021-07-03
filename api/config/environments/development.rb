@@ -2,8 +2,8 @@ Rails.application.configure do
 
 
   # localhost:3000では通信に失敗するためhostをdocker-compose.ymlのコンテナ名に合わせる
-  config.hosts << "api"
-  # config.hosts.clear
+  # config.hosts << "api"
+  config.hosts.clear
 
   # Settings specified here will take precedence over those in config/application.rb.
 
